@@ -111,11 +111,11 @@ function setEditData (todo) {
 
 function handleEdit() {
   todoStore.updateTodo(state.id, { subject: state.subject, description: state.description })
-  isOpen = false
+  todoStore.fetchTodos()
+  this.isOpen = false
   state.id = null
   state.subject = null
   state.description = null
-  todoStore.fetchTodos()
 }
 
 function handleDelete(id) {
