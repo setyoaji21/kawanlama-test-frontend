@@ -96,10 +96,10 @@ function handleAdd() {
   state.description = null
 }
 
-function handleDone(todo) {
+async function handleDone(todo) {
   const status = todo.status === 'Done' ? 'Unmarked' : 'Done'
-  todoStore.updateTodo(todo._id, { status })
-  todoStore.fetchTodos()
+  await todoStore.updateTodo(todo._id, { status })
+  await todoStore.fetchTodos()
 }
 
 function setEditData (todo) {
@@ -109,17 +109,17 @@ function setEditData (todo) {
   state.description = todo.description
 }
 
-function handleEdit() {
-  todoStore.updateTodo(state.id, { subject: state.subject, description: state.description })
-  todoStore.fetchTodos()
+async function handleEdit() {
+  await todoStore.updateTodo(state.id, { subject: state.subject, description: state.description })
+  await todoStore.fetchTodos()
   this.isOpen = false
   state.id = null
   state.subject = null
   state.description = null
 }
 
-function handleDelete(id) {
-  todoStore.deleteTodo(id)
-  todoStore.fetchTodos()
+async function handleDelete(id) {
+  await todoStore.deleteTodo(id)
+  await todoStore.fetchTodos()
 }
 </script>
